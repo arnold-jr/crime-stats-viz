@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<style>
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: auto;
+  position: relative;
+  width: 960px;
+}
+
+text {
+  font: 10px sans-serif;
+}
+
+form {
+	margin: auto;
+}
+
+input {
+  margin: 0 7px;
+}
+
+label {
+  display: inline-block;
+  width: 480px;
+  text-align: left;
+}
+
+div#wrapper{
+	margin-left:auto;
+	margin-right:auto;
+	height:auto; 
+	width:auto;
+}
+
+svg{
+	display: block;
+	margin: auto;
+}
+div#form{
+	float:left;
+	clear: left; 
+} 
+
+</style>
+</head>
+
+<body>
+<div id='wrapper'>
+	<div id='svg'/>
+</div>
+<form />
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var width = 960,
+    height = 500,
+    radius = Math.min(width, height) / 2;
+
+var color = d3.scale.category20();
+
+var pie = d3.layout.pie()
+  .value(function(d) { return d.value; })
+  .sort(null);
+
+var arc = d3.svg.arc()
+    .innerRadius(radius - 100)
+    .outerRadius(radius - 20);
+
+// Create SVG element
+var svg = d3.select("div#svg").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+
+// Set up groups
+var color = d3.scale.category10();
+
+var getDemByCharge = function(dArray, chargeName) {
+  var payload = null;
+  dArray.forEach(function(d) {
+    var charge = typeof d.charge !== 'undefined' ? d.charge : null 
+    if (charge == chargeName) {
+      payload = d.dem 
+    }
+  })
+  return payload
+}
+
+var getRaceByGender = function(dem, gender) {
+  var payload = typeof dem[gender] !== 'undefined' ? dem[gender] : null
+  
+  var outData = [];
+ 
+  for (var p in payload) {
+    outData.push({'key': p, 'value': payload[p]})
+  }
+  
+  return outData 
+}
+
+var doSomething = function(dArray) {
+  var outArray = [];
+  dArray.forEach(function(d) {
+    var gender = typeof d.dem.Female !== 'undefined' ? d.dem.Female : 'None' 
+    var race = typeof gender.White !== 'undefined' ? gender.White : 0 
+    var count = race 
+    outArray.push({"charge": d.charge, "count": count})
+  })
+
+  return outArray
+}
+
+d3.json("lcs.json", function(data) {
+
+  var dataset = [5, 10, 15, 20];
+  
+  var dem = getDemByCharge(data, "CRIMINAL TRESPASS 3RD"); 
+  console.log(dem)
+
+  var race = getRaceByGender(dem, "Male")
+  console.log(race)
+  
+  <!-- console.log(pie(doSomething(data))); --> 
+  var arcs = svg.selectAll("g.arc")
+    .data(pie(race))
+    .enter()
+    .append("g")
+    .attr("class", "arc")
+    .attr("transform", "translate(" + radius + ", " + radius + ")");
+
+  // Draw arc paths
+  arcs.append("path")
+    .attr("fill", function(d, i) {
+      return color(i);
+    })
+    .attr("d", arc);
+
+  // Generate text labels for each wedge
+  arcs.append("text")
+    .attr("transform", function(d) {
+      return "translate(" + arc.centroid(d) + ")";
+    })
+    .attr("text-anchor", "middle")
+    .text(function(d) {
+      return d.data.key;
+    });
+  
+  var label = d3.select("form").selectAll("label")
+      .data(data)
+    .enter().append("label");
+
+  label.append("input")
+      .attr("type", "radio")
+      .attr("id", function(d) { return d.charge; })
+
+  label.append("span")
+      .text(function(d) { return d.charge; });
+  
+});
+
+</script>
+</body>

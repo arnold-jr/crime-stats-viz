@@ -1,0 +1,250 @@
+[
+  {
+    "dem": {
+      "Female": {
+        "Black": 1,
+        "White": 6
+      },
+      "Male": {
+        "Other/Unk": 1,
+        "Black": 9,
+        "White": 7
+      }
+    },
+    "charge": "NO/IMPROPER TAG LIGHT"
+  },
+  {
+    "dem": {
+      "Female": {
+        "White": 1
+      },
+      "Male": {
+        "Black": 9,
+        "White": 6
+      }
+    },
+    "charge": "CRIMINAL TRESPASS 1ST"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 2,
+        "White": 4
+      },
+      "Male": {
+        "Black": 5,
+        "White": 3
+      }
+    },
+    "charge": "DISORDERLY CONDUCT"
+  },
+  {
+    "dem": {
+      "Male": {
+        "Black": 3,
+        "White": 0
+      }
+    },
+    "charge": "CRIMINAL TRESPASS 2ND"
+  },
+  {
+    "dem": {
+      "Male": {
+        "Black": 2,
+        "White": 3
+      }
+    },
+    "charge": "DV 3RD RECKLESS ENDANGERMENT"
+  },
+  {
+    "dem": {
+      "Female": {
+        "White": 1
+      },
+      "Male": {
+        "Black": 4,
+        "White": 5
+      }
+    },
+    "charge": "DV CRIMINAL MISCHIEF 2ND"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Hispanic": 4,
+        "Black": 89,
+        "White": 192
+      },
+      "Male": {
+        "Hispanic": 13,
+        "Indian": 1,
+        "Black": 228,
+        "White": 318,
+        "Other/Unk": 5
+      }
+    },
+    "charge": "DRIVING WHILE LICENSE SUSPENDED"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 4,
+        "White": 3
+      },
+      "Male": {
+        "Black": 10,
+        "White": 19
+      }
+    },
+    "charge": "RECKLESS ENDANGERMENT"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 2,
+        "White": 1
+      },
+      "Male": {
+        "Hispanic": 1,
+        "Black": 12,
+        "White": 8
+      }
+    },
+    "charge": "ATTEMPT TO ELUDE POLICE"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 0,
+        "White": 0
+      },
+      "Male": {
+        "Black": 2,
+        "White": 1
+      }
+    },
+    "charge": "GRAD DL>1 PASSENGERS IN VEHICLE"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Hispanic": 1,
+        "Black": 10,
+        "White": 32
+      },
+      "Male": {
+        "Hispanic": 3,
+        "Other/Unk": 1,
+        "Black": 24,
+        "White": 29
+      }
+    },
+    "charge": "DRIVERS LICENSE NOT IN POSSESSION"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 15,
+        "White": 20
+      },
+      "Male": {
+        "Hispanic": 1,
+        "Other/Unk": 2,
+        "Black": 42,
+        "White": 47
+      },
+      "Unknown": {
+        "Other/Unk": 1
+      }
+    },
+    "charge": "CRIMINAL TRESPASS 3RD"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 21,
+        "White": 61
+      },
+      "Male": {
+        "Hispanic": 5,
+        "Black": 136,
+        "White": 196
+      }
+    },
+    "charge": "DRIVING WHILE LICENSE REVOKED"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Hispanic": 1,
+        "Black": 21,
+        "White": 37
+      },
+      "Male": {
+        "Indian": 1,
+        "Black": 90,
+        "White": 105,
+        "Asian": 1,
+        "Other/Unk": 1,
+        "Hispanic": 7
+      }
+    },
+    "charge": "DV HARASSMENT 3RD"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 4,
+        "White": 22
+      },
+      "Male": {
+        "Black": 56,
+        "White": 0
+      }
+    },
+    "charge": "HARASSING COMMUNICATIONS"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 10,
+        "White": 17
+      },
+      "Male": {
+        "Hispanic": 2,
+        "Black": 32,
+        "White": 24
+      }
+    },
+    "charge": "GIVING FALSE INFORMATION TO AN O"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 28,
+        "White": 51
+      },
+      "Male": {
+        "Hispanic": 8,
+        "Indian": 1,
+        "Black": 122,
+        "White": 156,
+        "Other/Unk": 2
+      }
+    },
+    "charge": "POSSESSION OF MARIJUANA 2ND"
+  },
+  {
+    "dem": {
+      "Female": {
+        "Black": 3,
+        "White": 5
+      },
+      "Male": {
+        "Black": 11,
+        "White": 9
+      }
+    },
+    "charge": "VIOLATION OF NOISE ORDINANCE"
+  }
+]
