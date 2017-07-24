@@ -11,7 +11,7 @@ body {
 }
 
 text {
-  font: 10px sans-serif;
+  font: 16px sans-serif;
 }
 
 form {
@@ -116,7 +116,7 @@ d3.json("lcs.json", function(data) {
 
   var dataset = [5, 10, 15, 20];
   
-  var dem = getDemByCharge(data, "CRIMINAL TRESPASS 3RD"); 
+  var dem = getDemByCharge(data, "ATTEMPT TO ELUDE POLICE"); 
   console.log(dem)
 
   var race = getRaceByGender(dem, "Male")
