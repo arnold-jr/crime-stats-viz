@@ -53,8 +53,7 @@
 <body>
   <div id='wrapper'>
     <div id="tooltip" class="hidden">
-      <p><strong>Charge</strong></p>
-      <p><span id="value"></span></p>
+      <p><strong id="charge">Charge</strong></p>
     </div>
     <div id='svg'/>
     </div>
@@ -79,7 +78,10 @@ var svg = d3.select("div#svg")
 .attr("width", width)
 .attr("height", height)
 
-var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+
+
+var color = d3.scaleOrdinal(["#3b4cc1", "#8eb1ff", "#dedede", "#f59b7b", "#b50426"]);
 
 var path = d3.arc()
   .outerRadius(radius - 10)
@@ -91,7 +93,7 @@ var label = d3.arc()
 
 var pie = d3.pie()
   .sort(null)
-  .value(function(d) { return d.count; });
+  .value(function(d) { return d.value; });
 
 function addArcs(data) {
 
@@ -102,40 +104,55 @@ function addArcs(data) {
 
   arc.append("path")
     .attr("d", path)
-    .attr("fill", function(d) { return color(d.data.ethnicity); });
+    .attr("fill", function(d) { return color(d.data.key); });
 
   arc.append("text")
     .attr("transform", function(d) { return "translate(" + label.centroid(d) + ")"; })
     .attr("dy", "0.35em")
-    .text(function(d) { return d.data.ethnicity; });
+    .text(function(d) { return d.data.key; });
 }
 
-// Here d is a JSON record
-function addChart(d, xIndex, yIndex) {
-  console.log(d.charge);
+// Here jsonRecord is a JSON record
+function addChart(jsonRecord, xIndex, yIndex) {
+
+  // Sum the counts over each gender
   var acc = {};
   ["Male", "Female"].forEach(function(gender) {
-    var ethnicity = d.dem[gender];
+    var ethnicity = jsonRecord.dem[gender];
     for (var key in ethnicity) acc[key] = ethnicity[key] + (typeof acc[key] !== 'undefined' ? acc[key] : 0) 
   });
-  var data = [];
-  for (var eth in acc) {
-    data.push({"ethnicity": eth, "count": acc[eth]});
-  }
-
+ 
   var x = radius + xIndex * buffer;
   var y = radius + yIndex * buffer; 
+
   g = svg.append("g")
     .attr("transform", "translate(" + x + "," + y + ")")
 	  .on("mouseover", function(d1) {
-			var xPosition = parseFloat(d3.select(this).attr("x")) + radius / 2;
-			var yPosition = parseFloat(d3.select(this).attr("y")) / 2 + height / 2;
+      
+      var xPosition = x;
+			var yPosition = y;
 
-			d3.select("#tooltip")
+      var toolTip = d3.select("#tooltip");
+
+      toolTip
 				.style("left", xPosition + "px")
 				.style("top", yPosition + "px")
-				.select("#value")
-				.text(d.charge);
+				.select("#charge")
+				.text(jsonRecord.charge);
+
+      
+      // Updates existing values
+      var payload = toolTip.selectAll("#payload").data(d3.entries(acc));
+
+      // Create elements as needed
+      payload.enter().append("p")
+          .attr("id", "payload")
+        .merge(payload)
+          .text(function (d) { return d.key + ": " + d.value; });
+
+      // remove old elements as needed
+      payload.exit().remove();
+      
 
 			d3.select("#tooltip").classed("hidden", false);
 		
@@ -144,13 +161,11 @@ function addChart(d, xIndex, yIndex) {
 				d3.select("#tooltip").classed("hidden", true);
 		});
  
-  addArcs(data);
+  addArcs(d3.entries(acc));
 
 }
 
 function parseData(jsonData) {
-  console.log(jsonData[0])
-
   jsonData.forEach(function(d, i) {
     var stride = columns;
     var x = i % stride;
